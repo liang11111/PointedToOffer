@@ -1,4 +1,4 @@
-package arrays;
+package Number;
 
 public class P100_NumberOf1 {
     public int NumberOf1(int n) {

@@ -1,4 +1,6 @@
-public class Test {
+package arrays;
+
+public class P129_ReorderArray {
     public void reOrderArray(int [] array) {
         int count = 0;
         //数组中奇数的个数
@@ -39,11 +41,9 @@ public class Test {
     }
     public static void main(String[] args){
         int[] n  = {2};
-        Test a = new Test();
+        P129_ReorderArray a = new P129_ReorderArray();
         a.reOrderArray(n);
 //        System.out.println(b);
 
     }
 }
-
-
