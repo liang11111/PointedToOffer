@@ -24,7 +24,4 @@ public class P142_ReverseList {
         return ReverseHead;
     }
 
-    public static void main(String[] args){
-
-    }
 }
