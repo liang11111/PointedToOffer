@@ -21,6 +21,8 @@ public class P142_ReverseList {
             Node = NextNode;
 
         }
+
         return ReverseHead;
+
     }
 }
