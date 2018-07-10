@@ -1,72 +1,42 @@
-import java.util.ArrayList;
+
+import java.util.Stack;
 public class Test {
-    public void PrintMatrixClockwisely(int[][] matrix){
-        int columns = matrix[0].length;
-        int rows = matrix.length;
-
-        if(matrix == null || columns <= 0 || rows <= 0){
-            return;
+    public RandomListNode Clone(RandomListNode pHead)
+    {
+        if(pHead == null){
+            return null;
         }
 
-        int start = 0;
-        while(columns > start * 2 && rows > start * 2 ){
-            PrintMatrixCircle(matrix,columns,rows,start);
-            start++;
+        CloneNodes(pHead);
+        CloneRandom(pHead);
+        return EvenNode(pHead);
+    }
+
+    //根据原始链表的每个结点N创建对应的N',把N'连接在N的后面
+    void  CloneNodes(RandomListNode pHead){
+        RandomListNode pNode = pHead;
+        while(pNode != null){
+            RandomListNode pCloned = new RandomListNode(pNode.label);
+            pCloned.next = pNode.next;
+            pCloned.random = null;
+            pNode.next = pCloned;
+            pNode = pCloned.next;
         }
     }
 
-
-
-    public void  PrintMatrixCircle(int[][] matrix, int columns, int rows, int start){
-
-
-        int endX = columns - 1 - start;
-        int endY = rows - 1 -start;
-
-        //从左到右打印一行
-        for(int i = start; i <= endX; i++){
-            int number = matrix[start][i];
-           System.out.print(number + " ");
-        }
-
-        //从上到下打印一列
-        if(start < endY){
-            for(int i = start + 1; i <= endY; i++){
-                int number = matrix[i][endX];
-                System.out.print(number + " ");
-            }
-        }
-
-        //从右向左打印一行
-        if(endX > start ){
-            for(int i = endX - 1; i >= start; i--){
-                int number = matrix[endY][i];
-                System.out.print(number + " ");
-            }
-        }
-
-        //从下向上打印一列
-        if(start < endX && start < endY - 1){
-            for(int i = endY -1; i > start; i--){
-                int number = matrix[i][start];
-                System.out.print(number + " ");
-            }
-        }
+    //设置复制出来的节点的random。假设原始链表上的N的random指向节点S，
+    // 那么对应复制出来的N'是N的next指向的节点，同样S'也是S的next指向的节点
+    void CloneRandom(RandomListNode pHead){
+        
     }
 
+    public RandomListNode EvenNode(RandomListNode phead){
+        return  phead;
+    }
 
-    public  static  void main(String[] args){
-        int[][] matrix = new int[1][1];
-        int m = 1;
-        matrix[0][0] = 1;
-//        for(int i = 0;i < 4;i++){
-//            for(int j = 0;j < 4;j++){
-//                matrix[i][j] = m++;
-//            }
+    public static void main(String[] args) {
+        Test stackForMin = new Test();
 
-
-        Test a = new Test();
-        a.PrintMatrixClockwisely(matrix);
     }
 }
 
