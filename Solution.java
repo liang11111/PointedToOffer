@@ -5,57 +5,81 @@ import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        String str=input.next();
-//        int index=FirstNotRepeatingChar(str);
- //       System.out.println(index);
+
+        int[] array = {3,3,3,3,4,5};
+        int[] num1 = new int[1];
+        int[] num2 = new int[1];
+        int k = 3;
+
+        Solution test = new Solution();
+        int result = test.GetNumberOfK(array, k);
+        System.out.println(result);
     }
 
-    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
-        int length1 = getLength(pHead1);
-        int length2 = getLength(pHead2);
-        if (length1 == 0 || length2 == 0) {
-            return null;
-        }
 
-        ListNode pointLongListNode = null;
-        ListNode pointShortListNode = null;
-        int dif = 0;
-        if (length1 > length2) {
-            pointLongListNode = pHead1;
-            pointShortListNode = pHead2;
-
-        } else {
-            pointLongListNode = pHead2;
-            pointShortListNode = pHead1;
-        }
-        dif = Math.abs(length1 - length2);
-
-        for (int i = 0; i < dif; i++) {
-            pointLongListNode = pointLongListNode.next;
-
-        }
-        while (pointLongListNode != null && pointShortListNode != null
-                && pointLongListNode != pointShortListNode) {
-            pointLongListNode = pointLongListNode.next;
-            pointShortListNode = pointShortListNode.next;
-        }
-
-        return pointLongListNode;
-    }
-    private int getLength(ListNode pHead1) {
-        if (pHead1 == null) {
+    public int GetNumberOfK(int [] array , int k) {
+        int result = 0;
+        if (array == null || array.length == 0) {
             return 0;
         }
-        ListNode head = pHead1;
-        int len = 0;
 
-        while (head.next != null) {
-            head = head.next;
-            len++;
+        int start = 0, end = array.length - 1;
+
+        int firstIndex = getFirstIndex(array, start, end, k);
+        int lastIndex = getLastIndex(array, start, end, k);
+
+        if (firstIndex > -1 && lastIndex > -1) {
+            result = lastIndex - firstIndex + 1;
         }
 
-        return len;
+        return result;
+    }
+    private int getLastIndex(int[] array, int start, int end, int k) {
+        if (start > end) {
+            return -1;
+        }
+
+        int midIndex = (start + end) / 2;
+        int midData = array[midIndex];
+
+        if (midData == k) {
+            if (midIndex < array.length - 1 && array[midIndex + 1] != k
+                    || midIndex == array.length - 1) {
+                return midIndex;
+            } else {
+                start = midIndex + 1;
+            }
+        } else if (midData > k) {
+            end = midIndex - 1;
+        } else {
+            start = midIndex + 1;
+        }
+
+        return getLastIndex(array, start, end, k);
     }
 
-}
+    private int getFirstIndex(int[] array, int start, int end, int k) {
+        if (start > end) {
+            return -1;
+        }
+
+        int midIndex = (start + end) / 2;
+        int midData = array[midIndex];
+
+        if (midData == k) {
+            if (midIndex > 0 && array[midIndex - 1] != k || midIndex == 0) {
+                return midIndex;
+            } else {
+                end = midIndex - 1;
+            }
+        } else if (midData > k) {
+            end = midIndex - 1;
+        } else {
+            start = midIndex + 1;
+        }
+
+        return getFirstIndex(array, start, end, k);
+    }
+    }
+
+
