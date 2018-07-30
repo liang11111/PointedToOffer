@@ -1,6 +1,6 @@
 package CharsAndString;
 
-public class NiuKe_LeftRotateString {
+public class P286_LeftRotateString {
     public String LeftRotateString(String str,int n) {
         if (str == null || str.length() < 2 || str.length() < n) {
             return str;
@@ -28,7 +28,7 @@ public class NiuKe_LeftRotateString {
     }
     public static void main(String[] args) {
         String str = "abcXYZdef";
-        NiuKe_LeftRotateString test = new NiuKe_LeftRotateString();
+        P286_LeftRotateString test = new P286_LeftRotateString();
         int n = 3;
         String result = test.LeftRotateString(str, n);
         System.out.println(result);
