@@ -25,6 +25,7 @@ public class P298_IsContinuous {
                 return false;
             }
 
+
             NumberGap += numbers[big] - numbers[small] - 1;
             small = big;
             big++;
