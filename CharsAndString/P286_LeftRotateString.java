@@ -18,7 +18,7 @@ public class P286_LeftRotateString {
     }
 
 
-    private void Reverse(char[] CharArray, int start, int end) {
+    public void Reverse(char[] CharArray, int start, int end) {
         char temp = ' ';
         while (start < end) {
             temp = CharArray[start];
